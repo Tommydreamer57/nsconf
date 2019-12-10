@@ -1,26 +1,11 @@
 import React, { Component } from 'react';
-
-import {
-    ScrollView,
-    View,
-    Text,
-    TextInput,
-    FlatList,
-    SectionList,
-} from 'react-native';
-
-import { StorageConsumer } from '../storage/StorageProvider';
-
-import styles from '../styles/styles';
-
-import createNavigationOptions from '../navigation/navigation-options';
-
+import { FlatList, ScrollView, SectionList, Text, TextInput, View } from 'react-native';
 import SessionTile from '../components/SessionTile';
-
+import createNavigationOptions from '../navigation/navigation-options';
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles from '../styles/styles';
 import filterSessions from '../utils/filters';
-
 import { extractSessionType } from '../utils/sessions';
-
 
 const sessionsByDay = [
     {

@@ -1,15 +1,7 @@
 import React from 'react';
-
-import {
-    Text,
-    ScrollView,
-    View,
-    Image,
-} from 'react-native';
-
-import styles, { Window } from '../styles/styles';
-
+import { Image, ScrollView, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
+import styles, { Window } from '../styles/styles';
 
 Map.navigationOptions = createNavigationOptions("Map");
 

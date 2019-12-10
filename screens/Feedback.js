@@ -1,22 +1,9 @@
-import React, {
-    Component,
-} from 'react';
-
-import {
-    Text,
-    TextInput,
-    Slider,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-
-import createNavigationOptions from '../navigation/navigation-options';
-
-import { StorageConsumer } from '../storage/StorageProvider';
-
-import styles, { COLORS } from '../styles/styles';
-
+import React, { Component } from 'react';
+import { Slider, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import KeyboardView from '../components/KeyboardView';
+import createNavigationOptions from '../navigation/navigation-options';
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles, { COLORS } from '../styles/styles';
 import { extractSessionDay } from '../utils/sessions';
 
 export default class Feedback extends Component {

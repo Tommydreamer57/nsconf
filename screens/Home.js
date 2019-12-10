@@ -52,12 +52,13 @@ const links = [
         },
         {
             name: "CONTACT",
-            url: "sms:435-612-2474",
+            // url: "sms:435-612-2474",
+            url: "sms:770-530-1892",
             icon: "text",
         },
         {
             name: "DONATE",
-            url: "https://northstarlds.org/give/donate/",
+            url: "https://www.northstarlds.org/donate",
             icon: "cash",
         },
     ],
@@ -137,10 +138,10 @@ export default function Home({
                     </View>
                 ))}
             </View>
-            <Image
+            {/* <Image
                 source={require('../assets/LogoBottom.png')}
                 style={styles.bottomPadding}
-            />
+            /> */}
         </ImageBackground>
     );
 }
@@ -152,11 +153,12 @@ const styles = StyleSheet.create({
     },
     topPadding: {
         resizeMode: 'contain',
-        width: Window.width * 0.8,
-        marginLeft: Window.width * 0.1,
-        marginRight: Window.width * 0.1,
+        width: Window.width * 1.2,
+        marginLeft: Window.width * -0.1,
+        marginRight: Window.width * -0.1,
         marginTop: Window.height * 0.03,
-        height: Window.height * 0.3,
+        height: Window.height * 0.35,
+        marginBottom: Window.height * -0.025,
     },
     bottomPadding: {
         resizeMode: 'contain',
@@ -168,9 +170,12 @@ const styles = StyleSheet.create({
     },
     links: {
         height: Window.height * 0.5,
-        width: Window.width,
+        width: Window.width * 0.9,
+        marginLeft: Window.width * 0.05,
+        marginRight: Window.width * 0.05,
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        // backgroundColor: 'black',
     },
     row: {
         width: '100%',
@@ -180,7 +185,7 @@ const styles = StyleSheet.create({
     touchable: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     text: {
         color: 'white',

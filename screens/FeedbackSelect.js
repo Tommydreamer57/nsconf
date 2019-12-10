@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
-
-import {
-    Text,
-    TextInput,
-    View,
-    ScrollView,
-    FlatList,
-    Switch,
-} from 'react-native';
-
-import createNavigationOptions from '../navigation/navigation-options';
-
-import { StorageConsumer } from '../storage/StorageProvider';
-
-import styles, { COLORS } from '../styles/styles';
-
+import { FlatList, ScrollView, Switch, Text, TextInput, View } from 'react-native';
 import SessionTile from '../components/SessionTile';
-
+import createNavigationOptions from '../navigation/navigation-options';
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles, { COLORS } from '../styles/styles';
 import filterSessions from '../utils/filters';
 
 export default class FeedbackSelect extends Component {

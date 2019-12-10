@@ -1,11 +1,6 @@
-import {
-    AsyncStorage,
-    Alert,
-} from 'react-native';
-
 import axios from 'axios';
-
 import { SMS } from 'expo';
+import { Alert, AsyncStorage } from 'react-native';
 
 export const validKeys = {
     breakouts: "breakouts",

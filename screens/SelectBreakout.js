@@ -1,18 +1,9 @@
 import React from 'react';
-
-import {
-    ScrollView,
-    View,
-    FlatList,
-} from 'react-native';
-
+import { FlatList, ScrollView, View } from 'react-native';
 import SessionTile from '../components/SessionTile';
-
-import { StorageConsumer } from '../storage/StorageProvider';
-
-import styles from '../styles/styles';
-
 import createNavigationOptions from '../navigation/navigation-options';
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles from '../styles/styles';
 import { extractSessionType } from '../utils/sessions';
 
 SelectBreakout.navigationOptions = ({

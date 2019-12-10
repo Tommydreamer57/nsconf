@@ -1,21 +1,9 @@
-import React from 'react';
-
-import {
-    ScrollView,
-    View,
-    Text,
-    FlatList,
-    TouchableOpacity,
-} from 'react-native';
-
 import { Icon } from 'expo';
-
+import React from 'react';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
-
-import styles, { COLORS, SIZES } from '../styles/styles';
-
 import { StorageConsumer } from '../storage/StorageProvider';
-
+import styles, { COLORS, SIZES } from '../styles/styles';
 import { iconPrefix } from './Home';
 
 Notifications.navigationOptions = createNavigationOptions("Notifications");

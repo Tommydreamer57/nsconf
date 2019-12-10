@@ -1,19 +1,9 @@
 import React from 'react';
-
-import {
-    ScrollView,
-    View,
-    FlatList,
-    Text,
-    TouchableOpacity,
-} from 'react-native';
-
-import styles from '../styles/styles';
-
-import createNavigationOptions from '../navigation/navigation-options';
-
-import { StorageConsumer } from '../storage/StorageProvider';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import SessionTile from '../components/SessionTile';
+import createNavigationOptions from '../navigation/navigation-options';
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles from '../styles/styles';
 import { extractSessionType } from '../utils/sessions';
 
 Schedule.navigationOptions = createNavigationOptions("Your Schedule");

@@ -1,10 +1,4 @@
-import {
-    StyleSheet,
-    Dimensions,
-    Platform,
-    PixelRatio,
-    Alert,
-} from 'react-native';
+import { Dimensions, PixelRatio, Platform, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -19,11 +13,11 @@ export const COLORS = {
     green: "#C8C751",
     blueGreen: "#60A471",
     blue: "#00849B",
-    yellow: "#44CC22",
     white: "#FFFFFF",
     black: "#000000",
     gray: "#00000022",
-    darkGray: "#00000044"
+    darkGray: "#00000044",
+    orange: "#F29F25",
 };
 
 // My own responsive CSS functions
@@ -57,7 +51,7 @@ export const SIZES = {
     small: dynamicSize(11),
     xSmall: dynamicSize(8),
     xxSmall: dynamicSize(5),
-    homeIcon: dynamicSize(55),
+    homeIcon: dynamicSize(47.5),
 };
 
 export default StyleSheet.create({
@@ -214,11 +208,14 @@ export default StyleSheet.create({
         flexDirection: 'row',
         // width: Window.width - SIZES.large * 2,
     },
+    orangeBackground: {
+        backgroundColor: COLORS.orange + '88',
+    },
     blueBackground: {
-        backgroundColor: COLORS.blue + '44',
+        backgroundColor: COLORS.blue + '88',
     },
     blackBackground: {
-        backgroundColor: COLORS.black + '44',
+        backgroundColor: COLORS.black + '88',
     },
     marginTopSmall: {
         marginTop: SIZES.small,

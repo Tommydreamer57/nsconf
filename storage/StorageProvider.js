@@ -1,20 +1,7 @@
-import React, {
-    Component,
-    createContext,
-} from 'react';
-
+import React, { Component, createContext } from 'react';
+import { AsyncStorage } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-
-import {
-    getItems,
-    submitReview,
-    refetchSessionsEachDay,
-    handleReceivedNotification,
-} from './service';
-
-import {
-    AsyncStorage,
-} from 'react-native';
+import { getItems, handleReceivedNotification, refetchSessionsEachDay, submitReview } from './service';
 
 export const StorageContext = createContext();
 
@@ -75,9 +62,9 @@ export default class StorageProvider extends Component {
     async _fetchData() {
         await refetchSessionsEachDay();
 
-        let [ schedule, breakouts, keynotes, speakers, notifications ] = await getItems("schedule", "breakouts", "keynotes", "speakers", "notifications");
+        let [schedule, breakouts, keynotes, speakers, notifications] = await getItems("schedule", "breakouts", "keynotes", "speakers", "notifications");
 
-        if(!notifications) notifications = [];
+        if (!notifications) notifications = [];
 
         const scheduleArray = transformSchedule(schedule);
 

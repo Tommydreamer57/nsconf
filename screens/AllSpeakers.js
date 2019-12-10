@@ -1,24 +1,10 @@
+import { Ionicons } from '@expo/vector-icons';
 import React, { Component } from 'react';
-
-import {
-    View,
-    ScrollView,
-    FlatList,
-    Text,
-    TextInput,
-    TouchableOpacity,
-} from 'react-native';
-
-import { Icon } from 'expo';
-
-import { StorageConsumer } from '../storage/StorageProvider';
-
-import styles, { COLORS, SIZES } from '../styles/styles';
-
-import { iconPrefix } from './Home';
-
+import { FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
-
+import { StorageConsumer } from '../storage/StorageProvider';
+import styles, { COLORS, SIZES } from '../styles/styles';
+import { iconPrefix } from './Home';
 
 export default class AllSpeakers extends Component {
 
@@ -73,7 +59,7 @@ export default class AllSpeakers extends Component {
                                         <Text style={[
                                             styles.speakerButtonText,
                                         ]} >{name}</Text>
-                                        <Icon.Ionicons
+                                        <Ionicons
                                             name={iconPrefix + "arrow-forward"}
                                             size={SIZES.large}
                                             color={COLORS.darkGray}

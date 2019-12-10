@@ -1,19 +1,8 @@
 import React from 'react';
-
-import {
-    ScrollView,
-    View,
-    Image,
-    Text,
-    TouchableOpacity,
-} from 'react-native';
-
-import styles from '../styles/styles';
-
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
-
 import { StorageConsumer } from '../storage/StorageProvider';
-
+import styles from '../styles/styles';
 import { extractSessionDay } from '../utils/sessions';
 
 SessionInfo.navigationOptions = createNavigationOptions("Session Info");

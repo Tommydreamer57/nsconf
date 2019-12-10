@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-
-import {
-    Animated,
-    Keyboard,
-} from 'react-native';
+import { Animated, Keyboard } from 'react-native';
 
 export default class KeyboardView extends Component {
 
@@ -27,9 +23,9 @@ export default class KeyboardView extends Component {
             duration: event.duration,
             toValue: -event.endCoordinates.height,
         }, {
-                friction: 1, // not sure this does anything...
-                bounciness: 1, // not sure this does anything...
-            }).start(() => this.setState({ didShow: true }));
+            friction: 1, // not sure this does anything...
+            bounciness: 1, // not sure this does anything...
+        }).start(() => this.setState({ didShow: true }));
     };
 
     keyboardWillHide = (event) => {
@@ -37,9 +33,9 @@ export default class KeyboardView extends Component {
             duration: event.duration,
             toValue: 0,
         }, {
-                friction: 1, // not sure this does anything...
-                bounciness: 1, // not sure this does anything...
-            }).start();
+            friction: 1, // not sure this does anything...
+            bounciness: 1, // not sure this does anything...
+        }).start();
     };
 
     render() {

@@ -1,19 +1,9 @@
 import React from 'react';
-
-import {
-    ScrollView,
-    View,
-    FlatList,
-    Text,
-    Image,
-    TouchableOpacity,
-} from 'react-native';
-
-import styles from '../styles/styles';
-
+import { FlatList, Image, ScrollView, Text, View } from 'react-native';
+import SessionTile from '../components/SessionTile';
 import createNavigationOptions from '../navigation/navigation-options';
 import { StorageConsumer } from '../storage/StorageProvider';
-import SessionTile from '../components/SessionTile';
+import styles from '../styles/styles';
 
 SpeakerInfo.navigationOptions = createNavigationOptions("Speaker Info");
 
