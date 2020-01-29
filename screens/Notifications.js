@@ -1,4 +1,4 @@
-import { Icon } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
@@ -51,7 +51,7 @@ export default function Notifications() {
                                         <TouchableOpacity
                                             onPress={() => deleteNotification(notificationID)}
                                         >
-                                            <Icon.Ionicons
+                                            <Ionicons
                                                 name={iconPrefix + "close"}
                                                 size={SIZES.large * 2.5}
                                                 color={COLORS.darkGray}

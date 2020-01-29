@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { SMS } from 'expo';
 import { Alert, AsyncStorage } from 'react-native';
+import removeNullValues from '../utils/remove-null-values';
 
 export const validKeys = {
     breakouts: "breakouts",
@@ -41,19 +42,19 @@ export const fetchSessions = async () => {
             { data },
             existingSessions,
             existingNotifications,
-        ] = await Promise.all([
+        ] = removeNullValues(await Promise.all([
             sessionPromise,
             schedulePromise,
             notificationsPromise,
-        ]);
+        ]));
 
         const keynotes = (data || [])
-            .filter(({ sessiontype }) => sessiontype.match(/keynote/i))
-            .sort(({ sessiontype: a }, { sessiontype: b }) => (
+            .filter(({ sessiontype = '' }) => sessiontype.match(/keynote/i))
+            .sort(({ sessiontype: a = '' }, { sessiontype: b = '' }) => (
                 a.replace(/keynote /i, '') > b.replace(/keynote /i, '')
             ))
             .map(({
-                sessiontype,
+                sessiontype = '',
                 ...item
             }) => ({
                 ...item,
@@ -61,9 +62,9 @@ export const fetchSessions = async () => {
             }));
 
         const breakouts = (data || [])
-            .filter(({ sessiontype }) => sessiontype.match(/breakout/i))
+            .filter(({ sessiontype = '' }) => sessiontype.match(/breakout/i))
             .reduce((all, breakout) => {
-                const key = breakout.sessiontype.toUpperCase();
+                const key = (breakout.sessiontype || '').toUpperCase();
                 return {
                     ...all,
                     [key]: [...(all[key] || []), breakout]
@@ -80,7 +81,7 @@ export const fetchSessions = async () => {
             ...keynotes
                 .reduce((all, session) => ({
                     ...all,
-                    [session.sessiontype.toUpperCase()]: session,
+                    [(session.sessiontype || '').toUpperCase()]: session,
                 }), {}),
         };
 

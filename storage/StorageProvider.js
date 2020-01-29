@@ -22,7 +22,7 @@ const scheduleKeys = [
     "KEYNOTE 4",
 ];
 
-const transformSchedule = schedule => scheduleKeys.map(key => ({
+const transformSchedule = (schedule = {}) => scheduleKeys.map(key => ({
     sessionName: key,
     selectedSession: schedule[key],
 }));
