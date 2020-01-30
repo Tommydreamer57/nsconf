@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "North Star Conference App",
-    "description": "A tool for users to plan their conference, read bios, and receive important notifications",
+    "description": "A tool for users to plan their conference, read bios, and provide feedback on their experience",
     "slug": "nsconf",
     "privacy": "public",
     "sdkVersion": "36.0.0",

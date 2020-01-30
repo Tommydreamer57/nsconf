@@ -9,43 +9,42 @@ export const validKeys = {
     schedule: "schedule",
     speakers: "speakers",
     date: "date",
-    notifications: "notifications",
+    // notifications: "notifications",
 };
 
 export const refetchSessionsEachDay = async () => {
     const fetchDate = await getItem("date");
-    if (Date.now() > (+fetchDate || 0) + (1000 * 60 * 60 * 6)) {
-        return fetchSessions();
-    } else return false;
+    if (Date.now() > (+fetchDate || 0) + (1000 * 60 * 60 * 6)) return fetchSessions();
+    else return false;
 }
 
-export const sendMessage = async () => {
-    const isAvailable = await SMS.isAvailableAsync();
+// export const sendMessage = async () => {
+//     const isAvailable = await SMS.isAvailableAsync();
 
-    if (isAvailable) {
-        SMS.sendSMSAsync('3856257516', 'I need help');
-    } else {
-        Alert.alert("Message cannot be sent, we did not receive permission from you when you installed the app, If you need assistance please text 3856257516");
-    }
-}
+//     if (isAvailable) {
+//         SMS.sendSMSAsync('3856257516', 'I need help');
+//     } else {
+//         Alert.alert("Message cannot be sent, we did not receive permission from you when you installed the app, If you need assistance please text 3856257516");
+//     }
+// }
 
 export const fetchSessions = async () => {
     try {
 
         const sessionPromise = axios.get('https://northstarconferenceadmin.herokuapp.com/api/sessions');
 
-        const notificationsPromise = AsyncStorage.getItem(validKeys.notifications);
+        // const notificationsPromise = AsyncStorage.getItem(validKeys.notifications);
 
         const schedulePromise = AsyncStorage.getItem(validKeys.schedule);
 
         const [
             { data },
             existingSessions,
-            existingNotifications,
+            // existingNotifications,
         ] = removeNullValues(await Promise.all([
             sessionPromise,
             schedulePromise,
-            notificationsPromise,
+            // notificationsPromise,
         ]));
 
         const keynotes = (data || [])
@@ -98,7 +97,7 @@ export const fetchSessions = async () => {
 
         const date = `${Date.now()}`;
 
-        const notifications = existingNotifications || [];
+        // const notifications = existingNotifications || [];
 
         await AsyncStorage.multiSet([
             [validKeys.breakouts, JSON.stringify(breakouts)],
@@ -106,7 +105,7 @@ export const fetchSessions = async () => {
             [validKeys.schedule, JSON.stringify(schedule)],
             [validKeys.speakers, JSON.stringify(speakers)],
             [validKeys.date, JSON.stringify(date)],
-            [validKeys.notifications, JSON.stringify(notifications)]
+            // [validKeys.notifications, JSON.stringify(notifications)],
         ]);
 
         return {
@@ -114,7 +113,7 @@ export const fetchSessions = async () => {
             breakouts,
             schedule,
             speakers,
-            notifications,
+            // notifications,
             date,
         };
     } catch (err) {
@@ -153,25 +152,25 @@ export const getItems = (...keys) => {
     }
 }
 
-export const handleReceivedNotification = async notification => {
-    try {
-        const { body, title, notificationID } = notification.payload;
-        const result = await AsyncStorage.getItem(validKeys.notifications);
+// export const handleReceivedNotification = async notification => {
+//     try {
+//         const { body, title, notificationID } = notification.payload;
+//         const result = await AsyncStorage.getItem(validKeys.notifications);
 
-        const previousNotifications = JSON.parse(result) || [];
-        const allNotifications = [{ body, title, notificationID }].concat(previousNotifications);
+//         const previousNotifications = JSON.parse(result) || [];
+//         const allNotifications = [{ body, title, notificationID }].concat(previousNotifications);
 
-        try {
-            await AsyncStorage.setItem(validKeys.notifications, JSON.stringify(allNotifications));
+//         try {
+//             await AsyncStorage.setItem(validKeys.notifications, JSON.stringify(allNotifications));
 
-            return allNotifications;
-        } catch (err) {
-            console.error('Error setting notifications: ', err);
-        }
-    } catch (err) {
-        console.error('Error getting notifications: ', err);
-    }
-}
+//             return allNotifications;
+//         } catch (err) {
+//             console.error('Error setting notifications: ', err);
+//         }
+//     } catch (err) {
+//         console.error('Error getting notifications: ', err);
+//     }
+// }
 
 export const submitReview = async review => {
     try {

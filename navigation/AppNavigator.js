@@ -6,7 +6,7 @@ import Feedback from '../screens/Feedback';
 import FeedbackSelect from '../screens/FeedbackSelect';
 import Home from '../screens/Home';
 import Map from '../screens/Map';
-import Notifications from '../screens/Notifications';
+// import Notifications from '../screens/Notifications';
 import Schedule from '../screens/Schedule';
 import SelectBreakout from '../screens/SelectBreakout';
 import SessionInfo from '../screens/SessionInfo';
@@ -24,7 +24,7 @@ export default createAppContainer(createStackNavigator({
     Feedback,
     FeedbackSelect,
     Map,
-    Notifications,
+    // Notifications,
 }, {
     cardStyle: {
         backgroundColor: COLORS.white,

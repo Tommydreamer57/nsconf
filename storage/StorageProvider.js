@@ -1,7 +1,12 @@
 import React, { Component, createContext } from 'react';
 import { AsyncStorage } from 'react-native';
 import OneSignal from 'react-native-onesignal';
-import { getItems, handleReceivedNotification, refetchSessionsEachDay, submitReview } from './service';
+import {
+    getItems,
+    // handleReceivedNotification,
+    refetchSessionsEachDay,
+    submitReview,
+} from './service';
 
 export const StorageContext = createContext();
 
@@ -36,25 +41,25 @@ export default class StorageProvider extends Component {
         breakouts: {},
         keynotes: [],
         speakers: {},
-        notifications: [],
+        // notifications: [],
         addToSchedule() { },
         removeFromSchedule() { },
         submitReview() { },
-        deleteNotification() { },
+        // deleteNotification() { },
     };
 
-    componentWillUnmount() {
-        OneSignal.removeEventListener('received', this.receiveNotification);
-        OneSignal.removeEventListener('opened', this.onOpened);
-        OneSignal.removeEventListener('ids', this.onIds);
-    }
+    // componentWillUnmount() {
+    //     OneSignal.removeEventListener('received', this.receiveNotification);
+    //     OneSignal.removeEventListener('opened', this.onOpened);
+    //     OneSignal.removeEventListener('ids', this.onIds);
+    // }
 
     componentDidMount = async () => {
-        OneSignal.init("d8ca736c-86df-4151-9df8-2fbfecf81436");
+        // OneSignal.init("d8ca736c-86df-4151-9df8-2fbfecf81436");
 
-        OneSignal.addEventListener('received', this.receiveNotification);
-        OneSignal.addEventListener('opened', this.onOpened);
-        OneSignal.addEventListener('ids', this.onIds);
+        // OneSignal.addEventListener('received', this.receiveNotification);
+        // OneSignal.addEventListener('opened', this.onOpened);
+        // OneSignal.addEventListener('ids', this.onIds);
 
         this._fetchData();
     }
@@ -62,9 +67,21 @@ export default class StorageProvider extends Component {
     async _fetchData() {
         await refetchSessionsEachDay();
 
-        let [schedule, breakouts, keynotes, speakers, notifications] = await getItems("schedule", "breakouts", "keynotes", "speakers", "notifications");
+        let [
+            schedule,
+            breakouts,
+            keynotes,
+            speakers,
+            // notifications,
+        ] = await getItems(
+            "schedule",
+            "breakouts",
+            "keynotes",
+            "speakers",
+            // "notifications",
+        );
 
-        if (!notifications) notifications = [];
+        // if (!notifications) notifications = [];
 
         const scheduleArray = transformSchedule(schedule);
 
@@ -85,10 +102,10 @@ export default class StorageProvider extends Component {
             breakouts,
             keynotes,
             speakers,
-            notifications,
+            // notifications,
             addToSchedule: this.addToSchedule,
             removeFromSchedule: this.removeFromSchedule,
-            deleteNotification: this.deleteNotification,
+            // deleteNotification: this.deleteNotification,
             submitReview,
         });
     }
@@ -131,33 +148,33 @@ export default class StorageProvider extends Component {
         }
     }
 
-    deleteNotification = async id => {
-        const notifications = this.state.notifications
-            .filter(({ notificationID }) => notificationID !== id);
+    // deleteNotification = async id => {
+    //     const notifications = this.state.notifications
+    //         .filter(({ notificationID }) => notificationID !== id);
 
-        try {
-            await AsyncStorage.setItem("notifications", JSON.stringify(notifications));
-            this.setState({ notifications });
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    //     try {
+    //         await AsyncStorage.setItem("notifications", JSON.stringify(notifications));
+    //         this.setState({ notifications });
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
 
-    receiveNotification = async notification => {
-        try {
-            const notifications = await handleReceivedNotification(notification);
+    // receiveNotification = async notification => {
+    //     try {
+    //         const notifications = await handleReceivedNotification(notification);
 
-            if (notifications) this.setState({ notifications });
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    //         if (notifications) this.setState({ notifications });
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
 
-    onOpened(openResult) { }
+    // onOpened(openResult) { }
 
-    onIds(device) {
-        console.log('Device info: ', device);
-    }
+    // onIds(device) {
+    //     console.log('Device info: ', device);
+    // }
 
     render = () => (
         <Provider

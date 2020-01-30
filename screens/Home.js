@@ -38,11 +38,11 @@ const links = [
             to: "Map",
             icon: "map",
         },
-        {
-            name: "NOTIFICATIONS",
-            to: "Notifications",
-            icon: "notifications",
-        },
+        // {
+        //     name: "NOTIFICATIONS",
+        //     to: "Notifications",
+        //     icon: "notifications",
+        // },
     ],
     [
         {
