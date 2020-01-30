@@ -42,6 +42,7 @@ const normalize = size => {
 }
 
 export const SIZES = {
+    xxxLarge: dynamicSize(30),
     xxLarge: dynamicSize(24),
     xLarge: dynamicSize(20),
     large: dynamicSize(18),

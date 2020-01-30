@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Alert, Image, ImageBackground, Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sendMessage } from '../storage/service';
-import { SIZES, Window } from '../styles/styles';
+import { SIZES, Window, COLORS } from '../styles/styles';
 
 export const iconPrefix = Platform.OS === "ios" ?
     "ios-"
@@ -10,58 +10,58 @@ export const iconPrefix = Platform.OS === "ios" ?
     "md-";
 
 const links = [
-    [
-        {
-            name: "SCHEDULE",
-            to: "Schedule",
-            icon: "add-circle",
-        },
-        {
-            name: "SPEAKERS",
-            to: "AllSpeakers",
-            icon: "people",
-        },
-        {
-            name: "FEEDBACK",
-            to: "FeedbackSelect",
-            icon: "paper",
-        },
-    ],
-    [
-        // {
-        //     name: "SESSIONS",
-        //     to: "AllSessions",
-        //     icon: "microphone",
-        // },
-        // {
-        //     name: "NOTIFICATIONS",
-        //     to: "Notifications",
-        //     icon: "notifications",
-        // },
-        // {
-        //     name: "CONTACT",
-        //     // url: "sms:435-612-2474",
-        //     url: "sms:770-530-1892",
-        //     icon: "text",
-        // },
-    ],
-    [
-        {
-            name: "AUDIO",
-            url: "https://vimeo.com/ondemand/northstar2018/256616872",
-            icon: "play-circle",
-        },
-        {
-            name: "MAP",
-            to: "Map",
-            icon: "map",
-        },
-        {
-            name: "DONATE",
-            url: "https://www.northstarlds.org/donate",
-            icon: "cash",
-        },
-    ],
+    // [
+    {
+        name: "SCHEDULE",
+        to: "Schedule",
+        icon: "add-circle",
+    },
+    {
+        name: "SPEAKERS",
+        to: "AllSpeakers",
+        icon: "people",
+    },
+    {
+        name: "MAP",
+        to: "Map",
+        icon: "map",
+    },
+    {
+        name: "FEEDBACK",
+        to: "FeedbackSelect",
+        icon: "paper",
+    },
+    // ],
+    // [
+    // {
+    //     name: "SESSIONS",
+    //     to: "AllSessions",
+    //     icon: "microphone",
+    // },
+    // {
+    //     name: "NOTIFICATIONS",
+    //     to: "Notifications",
+    //     icon: "notifications",
+    // },
+    // {
+    //     name: "CONTACT",
+    //     // url: "sms:435-612-2474",
+    //     url: "sms:770-530-1892",
+    //     icon: "text",
+    // },
+    // ],
+    // [
+    {
+        name: "AUDIO",
+        url: "https://vimeo.com/ondemand/northstar2018/256616872",
+        icon: "play-circle",
+    },
+    {
+        name: "DONATE",
+        url: "https://www.northstarlds.org/donate",
+        icon: "cash",
+    },
+    // ],
 ];
 
 Home.navigationOptions = {
@@ -85,58 +85,60 @@ export default function Home({
             <View
                 style={styles.links}
             >
-                {links.map((row, i) => (
-                    <View
-                        key={i}
-                        style={styles.row}
-                    >
-                        {row.map(({
-                            to,
-                            icon,
-                            name,
-                            url,
-                        }, j) => (
-                                <TouchableOpacity
-                                    key={j}
-                                    style={styles.touchable}
-                                    onPress={to ?
+                {links
+                    // .map((row, i) => (
+                    //     <View
+                    //         key={i}
+                    //         style={styles.row}
+                    //     >
+                    //         {row
+                    .map(({
+                        to,
+                        icon,
+                        name,
+                        url,
+                    }, j) => (
+                            <TouchableOpacity
+                                key={j}
+                                style={styles.homeLink}
+                                onPress={to ?
 
-                                        () => navigate(to)
+                                    () => navigate(to)
+                                    :
+                                    Platform.OS === 'android' && url.match(/sms/) ?
+                                        sendMessage
                                         :
-                                        Platform.OS === 'android' && url.match(/sms/) ?
-                                            sendMessage
-                                            :
-                                            () =>
-                                                Linking.canOpenURL(url) ?
-                                                    Linking.openURL(url)
-                                                    :
-                                                    Alert.alert(`Cannot open url: ${url}`)}
+                                        () =>
+                                            Linking.canOpenURL(url) ?
+                                                Linking.openURL(url)
+                                                :
+                                                Alert.alert(`Cannot open url: ${url}`)}
+                            >
+                                <Ionicons
+                                    name={iconPrefix + icon}
+                                    size={SIZES.homeIcon}
+                                    color='white'
+                                // style={styles.icon}
+                                />
+                                <Text
+                                    style={styles.text}
                                 >
-                                    <Ionicons
-                                        name={iconPrefix + icon}
-                                        size={SIZES.homeIcon}
-                                        color='white'
-                                    // style={styles.icon}
-                                    />
-                                    <Text
-                                        style={styles.text}
-                                    >
-                                        {name}
-                                        {!to && url && Linking.canOpenURL(url) ? (
-                                            <>
-                                                &nbsp;
+                                    {name}
+                                    {!to && url && Linking.canOpenURL(url) ? (
+                                        <>
+                                            &nbsp;&nbsp;
                                                 <Ionicons
-                                                    name={iconPrefix + "open"}
-                                                    size={SIZES.small - 1}
-                                                    color="white"
-                                                />
-                                            </>
-                                        ) : null}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                    </View>
-                ))}
+                                                name={iconPrefix + "open"}
+                                                size={SIZES.xxxLarge}
+                                                color="white"
+                                            />
+                                        </>
+                                    ) : null}
+                                </Text>
+                            </TouchableOpacity>
+                            //             ))}
+                            // </View>
+                        ))}
             </View>
             {/* <Image
                 source={require('../assets/LogoBottom.png')}
@@ -170,26 +172,35 @@ const styles = StyleSheet.create({
     },
     links: {
         height: Window.height * 0.5,
-        width: Window.width * 0.9,
-        marginLeft: Window.width * 0.05,
-        marginRight: Window.width * 0.05,
+        width: Window.width * 0.85,
+        marginLeft: Window.width * 0.075,
+        marginRight: Window.width * 0.075,
         justifyContent: 'space-evenly',
         alignItems: 'center',
         // backgroundColor: 'black',
     },
-    row: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-    },
-    touchable: {
+    // row: {
+    //     width: '100%',
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-evenly',
+    // },
+    homeLink: {
         flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        // justifyContent: 'flex-start',
         alignItems: 'center',
+        width: '100%',
+        padding: SIZES.small,
+        marginBottom: SIZES.medium,
+        // borderWidth: 1,
+        // borderColor: COLORS.white,
     },
     text: {
         color: 'white',
-        fontSize: SIZES.small - 1,
+        fontSize: SIZES.xxxLarge,
         textAlign: 'center',
+        marginLeft: SIZES.xLarge,
+        textTransform: 'lowercase',
     },
 });
