@@ -17,9 +17,9 @@ const links = [
             icon: "add-circle",
         },
         {
-            name: "SESSIONS",
-            to: "AllSessions",
-            icon: "microphone",
+            name: "SPEAKERS",
+            to: "AllSpeakers",
+            icon: "people",
         },
         {
             name: "FEEDBACK",
@@ -28,20 +28,21 @@ const links = [
         },
     ],
     [
-        {
-            name: "SPEAKERS",
-            to: "AllSpeakers",
-            icon: "people",
-        },
-        {
-            name: "MAP",
-            to: "Map",
-            icon: "map",
-        },
+        // {
+        //     name: "SESSIONS",
+        //     to: "AllSessions",
+        //     icon: "microphone",
+        // },
         // {
         //     name: "NOTIFICATIONS",
         //     to: "Notifications",
         //     icon: "notifications",
+        // },
+        // {
+        //     name: "CONTACT",
+        //     // url: "sms:435-612-2474",
+        //     url: "sms:770-530-1892",
+        //     icon: "text",
         // },
     ],
     [
@@ -51,10 +52,9 @@ const links = [
             icon: "play-circle",
         },
         {
-            name: "CONTACT",
-            // url: "sms:435-612-2474",
-            url: "sms:770-530-1892",
-            icon: "text",
+            name: "MAP",
+            to: "Map",
+            icon: "map",
         },
         {
             name: "DONATE",
