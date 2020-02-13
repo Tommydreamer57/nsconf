@@ -3,46 +3,70 @@ import { Image, ScrollView, View } from 'react-native';
 import createNavigationOptions from '../navigation/navigation-options';
 import styles, { Window } from '../styles/styles';
 
-Map.navigationOptions = createNavigationOptions("Map");
+Map.navigationOptions = ({
+    navigation: {
+        state: {
+            params: {
+                room = '',
+            } = {},
+        } = {},
+    },
+}) => ({
+    ...createNavigationOptions("Map"),
+    title: `Map - ${(MAPS.find(({ match }) => room.match(match)) || {}).name || 'General'}`,
+});
 
 const MAPS = [{
     match: /alta/i,
+    name: "Alta",
     source: require('../assets/maps/Alta.png'),
 }, {
-    match: /big\s*cottonwood/i,
+    match: /cottonwood/i,
+    name: "Big Cottonwood",
     source: require('../assets/maps/BigCottonwood.png'),
 }, {
     match: /brighton/i,
+    name: "Brighton",
     source: require('../assets/maps/Brighton.png'),
 }, {
     match: /deer\s*valley/i,
+    name: "Deer Valley",
     source: require('../assets/maps/DeerValley.png'),
 }, {
     match: /executive\s*board/i,
+    name: "Executive Board",
     source: require('../assets/maps/ExecutiveBoard.png'),
 }, {
     match: /ballroom/i,
+    name: "Grand Ballroom",
     source: require('../assets/maps/GrandBallroom.png'),
 }, {
     match: /powder/i,
+    name: "Powder Mountain",
     source: require('../assets/maps/PowderMountain.png'),
 }, {
     match: /sidewinder/i,
+    name: "Sidewinder",
     source: require('../assets/maps/Sidewinder.png'),
 }, {
     match: /snowbird/i,
+    name: "Snowbird",
     source: require('../assets/maps/Snowbird.png'),
 }, {
     match: /sundance/i,
+    name: "Sundance",
     source: require('../assets/maps/Sundance.png'),
 }, {
     match: /wasatch/i,
+    name: "Wasatch",
     source: require('../assets/maps/Wasatch.png'),
 }, {
     match: /wildcat/i,
+    name: "Wildcat",
     source: require('../assets/maps/Wildcat.png'),
 }, {
     match: /^/,
+    name: "General",
     source: require('../assets/maps/Map.png'),
 }];
 
