@@ -19,12 +19,17 @@ const links = [
     {
         name: "SPEAKERS",
         to: "AllSpeakers",
-        icon: "people",
+        icon: "person",
     },
     {
         name: "MAP",
         to: "Map",
         icon: "map",
+    },
+    {
+        name: "SOCIAL EVENTS",
+        to: "SocialEvents",
+        icon: "heart",
     },
     {
         name: "FEEDBACK",

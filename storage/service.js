@@ -9,6 +9,7 @@ export const validKeys = {
     schedule: "schedule",
     speakers: "speakers",
     date: "date",
+    socials: "socials",
     // notifications: "notifications",
 };
 
@@ -17,6 +18,8 @@ export const refetchSessionsEachDay = async () => {
     if (Date.now() > (+fetchDate || 0) + (1000 * 60 * 60 * 6)) return fetchSessions();
     else return false;
 }
+
+AsyncStorage.clear();
 
 // export const sendMessage = async () => {
 //     const isAvailable = await SMS.isAvailableAsync();
@@ -35,15 +38,19 @@ export const fetchSessions = async () => {
 
         // const notificationsPromise = AsyncStorage.getItem(validKeys.notifications);
 
+        const socialEventsPromise = axios.get('http://nsconf.lowrysoftware.com/api/events');
+
         const schedulePromise = AsyncStorage.getItem(validKeys.schedule);
 
         const [
             { data },
             existingSessions,
+            { data: socials },
             // existingNotifications,
         ] = removeNullValues(await Promise.all([
             sessionPromise,
             schedulePromise,
+            socialEventsPromise,
             // notificationsPromise,
         ]));
 
@@ -105,6 +112,7 @@ export const fetchSessions = async () => {
             [validKeys.schedule, JSON.stringify(schedule)],
             [validKeys.speakers, JSON.stringify(speakers)],
             [validKeys.date, JSON.stringify(date)],
+            [validKeys.socials, JSON.stringify(socials)],
             // [validKeys.notifications, JSON.stringify(notifications)],
         ]);
 
@@ -113,6 +121,7 @@ export const fetchSessions = async () => {
             breakouts,
             schedule,
             speakers,
+            socials,
             // notifications,
             date,
         };

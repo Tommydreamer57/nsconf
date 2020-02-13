@@ -1,11 +1,9 @@
 import React, { Component, createContext } from 'react';
 import { AsyncStorage } from 'react-native';
-import OneSignal from 'react-native-onesignal';
 import {
     getItems,
     // handleReceivedNotification,
-    refetchSessionsEachDay,
-    submitReview,
+    refetchSessionsEachDay, submitReview, validKeys
 } from './service';
 
 export const StorageContext = createContext();
@@ -41,6 +39,7 @@ export default class StorageProvider extends Component {
         breakouts: {},
         keynotes: [],
         speakers: {},
+        socials: [],
         // notifications: [],
         addToSchedule() { },
         removeFromSchedule() { },
@@ -72,12 +71,14 @@ export default class StorageProvider extends Component {
             breakouts,
             keynotes,
             speakers,
+            socials,
             // notifications,
         ] = await getItems(
-            "schedule",
-            "breakouts",
-            "keynotes",
-            "speakers",
+            validKeys.schedule,
+            validKeys.breakouts,
+            validKeys.keynotes,
+            validKeys.speakers,
+            validKeys.socials,
             // "notifications",
         );
 
@@ -102,6 +103,7 @@ export default class StorageProvider extends Component {
             breakouts,
             keynotes,
             speakers,
+            socials,
             // notifications,
             addToSchedule: this.addToSchedule,
             removeFromSchedule: this.removeFromSchedule,

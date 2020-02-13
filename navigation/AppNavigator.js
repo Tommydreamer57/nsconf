@@ -10,6 +10,7 @@ import Map from '../screens/Map';
 import Schedule from '../screens/Schedule';
 import SelectBreakout from '../screens/SelectBreakout';
 import SessionInfo from '../screens/SessionInfo';
+import SocialEvents from '../screens/SocialEvents';
 import SpeakerInfo from '../screens/SpeakerInfo';
 import { COLORS } from '../styles/styles';
 
@@ -21,6 +22,7 @@ export default createAppContainer(createStackNavigator({
     SelectBreakout,
     SessionInfo,
     SpeakerInfo,
+    SocialEvents,
     Feedback,
     FeedbackSelect,
     Map,
