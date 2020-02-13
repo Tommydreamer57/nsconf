@@ -31,6 +31,7 @@ export default function SessionInfo({
                         speakername = '',
                         speakerbio = '',
                         speakerphoto = '',
+                        room = '',
                     } = {},
                 },
                 scheduleArray,
@@ -67,6 +68,10 @@ export default function SessionInfo({
                                 styles.h4,
                                 styles.marginBottomXxSmall,
                             ]} >{extractSessionDay({ sessiontype: sessionName })} {sessiontime}</Text>
+                            <Text style={[
+                                styles.h4,
+                                styles.marginBottomXxSmall,
+                            ]} >{room}</Text>
                             <Text style={[
                                 styles.h4,
                                 styles.marginBottomLarge,
@@ -119,6 +124,17 @@ export default function SessionInfo({
                                         ]} >Add To Schedule</Text>
                                     </TouchableOpacity>
                                 )}
+                            <TouchableOpacity
+                                style={[
+                                    styles.button,
+                                    styles.marginTopMedium,
+                                ]}
+                                onPress={() => navigate("Map", { room })}
+                            >
+                                <Text style={[
+                                    styles.buttonText,
+                                ]} >View {room} Map</Text>
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={[
                                     styles.button,
